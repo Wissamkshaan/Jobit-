@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import JobList from './components/JobList';
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
     
     axios.get('http://localhost:8000/jobs/')
       .then(response => {
+        // console.log('Fetched data:', response.data); 
 
         setJobs(response.data);
       })
@@ -20,23 +22,12 @@ function App() {
   
   return (
     <div className="App">
-      <div>
-        <h1>Hello</h1>
-        {/* Render the fetched job data */}
-        <ul>
-          {jobs.map(job => (
-            <li key={job.id}>
-             <strong>Title:</strong> {job.title}<br />
-              <strong>Resume:</strong> {job.resume}<br />
-              <strong>Employer:</strong> {job.employer}<br />
-              <strong>Applied At:</strong> {job.applied_at}<br />
-            </li>
-            
-          ))}
-        </ul>
-      </div>
+     
+        <JobList jobs={jobs} />
+      
     </div>
   );
-}
+};
+
 
 export default App;
