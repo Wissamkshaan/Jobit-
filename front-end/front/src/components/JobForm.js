@@ -23,7 +23,7 @@ const JobForm = () => {
     axios.post('http://localhost:8000/jobs/', formData)
       .then(response => {
         console.log('Created new job:', response.data);
-        // Optionally, you can reset the form or perform other actions
+       
       })
       .catch(error => {
         console.error('Error creating new job:', error);
