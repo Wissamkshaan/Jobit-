@@ -33,9 +33,9 @@ class Category(models.Model):
     
 class Job(models.Model):
     title = models.CharField(max_length=100)
+    description = models.TextField(default="No description available")
     employer = models.ForeignKey(User, on_delete=models.CASCADE)
-    resume = models.FileField(upload_to='resumes/', blank=True)
-    applied_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True, blank=True)
     
 
