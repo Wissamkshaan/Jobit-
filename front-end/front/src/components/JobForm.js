@@ -18,18 +18,52 @@ const JobForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     // Send a POST request to create a new job
     axios.post('http://localhost:8000/jobs/', formData)
       .then(response => {
         console.log('Created new job:', response.data);
-       
+        setFormData({
+          title: '',
+          resume: '',
+          employer: '',
+          applied_at: '',
+        });
       })
       .catch(error => {
         console.error('Error creating new job:', error);
       });
   };
+  const handleUpdate = () => {
+    const jobIdToUpdate = 1;  // Replace with the actual job ID
 
+    // Send a PUT request to update the job
+    axios.put(`http://localhost:8000/jobs/${jobIdToUpdate}/`, formData)
+      .then(response => {
+        console.log('Updated job:', response.data);
+        
+      })
+      .catch(error => {
+        console.error('Error updating job:', error);
+      });
+  };
+
+  const handleDelete = () => {
+    const jobIdToDelete = 1;  // Replace with the actual job ID
+
+    // Send a DELETE request to delete the job
+    axios.delete(`http://localhost:8000/jobs/${jobIdToDelete}/`)
+      .then(response => {
+        console.log('Deleted job:', response.data);
+        
+        
+      })
+      .catch(error => {
+        console.error('Error deleting job:', error);
+      });
+  };
+
+  
   return (
     <form onSubmit={handleSubmit}>
       <label>Title:</label>
@@ -45,6 +79,8 @@ const JobForm = () => {
       <input type="text" name="applied_at" value={formData.applied_at} onChange={handleChange} required />
 
       <button type="submit">Create Job</button>
+      <button type="button" onClick={handleUpdate}>Update Job</button>
+      <button type="button" onClick={handleDelete}>Delete Job</button>
     </form>
   );
 };

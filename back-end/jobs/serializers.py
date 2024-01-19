@@ -22,9 +22,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class JobSerializer(serializers.ModelSerializer):
+    category_name = serializers.CharField(source='category.name', read_only=True)
     class Meta:
         model = Job
-        fields = '__all__'
+        fields = ['id', 'title', 'resume', 'applied_at', 'employer', 'category', 'category_name']
 
 class ApplicationSerializer(serializers.ModelSerializer):
     job  = JobSerializer(read_only=True)

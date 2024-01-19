@@ -19,11 +19,12 @@ class UserProfile(models.Model):
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.create(user=instance)
+        UserProfile.objects.create(user=instance, is_employer=instance.userprofile.is_employer)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
 
@@ -35,6 +36,8 @@ class Job(models.Model):
     employer = models.ForeignKey(User, on_delete=models.CASCADE)
     resume = models.FileField(upload_to='resumes/', blank=True)
     applied_at = models.DateTimeField(default=timezone.now)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    
 
     def __str__(self):
         return self.title
