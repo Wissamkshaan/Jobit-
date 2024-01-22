@@ -43,9 +43,11 @@ class EmployerRegistrationSerializer(serializers.ModelSerializer):
         return user
 class JobSerializer(serializers.ModelSerializer):
     category_name = serializers.CharField(source='category.name', read_only=True)
+    employer_name = serializers.CharField(source='employer.username', read_only=True)
+
     class Meta:
         model = Job
-        fields = ['id', 'title', 'description', 'created_at', 'employer', 'category', 'category_name']
+        fields = ['id', 'title', 'employer_name', 'description', 'created_at', 'employer', 'category', 'category_name']
 
 class ApplicationSerializer(serializers.ModelSerializer):
     job  = JobSerializer(read_only=True)

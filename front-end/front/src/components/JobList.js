@@ -1,20 +1,36 @@
 import React from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import JobDetails from './JobDetails';
 
 const JobList = ({ jobs, onUpdate, onDelete }) => {
+  const [selectedJobId, setSelectedJobId] = useState(null);
+
+  const handleUpdate = (jobId) => {
+    setSelectedJobId(jobId);
+  };
+
+  const handleCloseDetails = () => {
+    setSelectedJobId(null);
+  };
+
   return (
-    <ul>
+    <div>
       {jobs.map(job => (
-        <li key={job.id}>
-          <strong>Title:</strong> {job.title}<br />
-          <strong>Resume:</strong> <a href={job.resume} target="_blank" rel="noopener noreferrer">View Resume</a><br />
-          <strong>Employer:</strong> {job.employer}<br />
-          <strong>Applied At:</strong> {job.applied_at}<br />
-          <button type="button" onClick={() => onUpdate(job)}>Update</button>
-          <button type="button" onClick={() => onDelete(job.id)}>Delete</button>
-        </li>
+        <div key={job.id}>
+          <h3>{job.title}</h3>
+          <p>Description: {job.description}</p>
+          <p>Employer: {job.employer_name}</p>
+          <p>Created At: {job.created_at}</p>
+          <p>Category: {job.category_name}</p>
+          <button onClick={() => handleUpdate(job.id)}>Update</button>
+          <button onClick={() => onDelete(job.id)}>Delete</button>
+        </div>
       ))}
-    </ul>
+
+      {selectedJobId && (
+        <JobDetails jobId={selectedJobId} onClose={handleCloseDetails} onUpdate={onUpdate} />
+      )}
+    </div>
   );
 };
 
