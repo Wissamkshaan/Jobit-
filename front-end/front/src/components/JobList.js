@@ -1,12 +1,18 @@
-import React from 'react';
-import { useState } from 'react';
-import JobDetails from './JobDetails';
+import React, { useState } from 'react';
+import JobListForApplicant from './JobListForApplicant';
+import JobDetailsForApplicant from './JobDetailsForApplicant';
 
 const JobList = ({ jobs, onUpdate, onDelete }) => {
+  console.log('Rendered Jobs:', jobs);
   const [selectedJobId, setSelectedJobId] = useState(null);
 
   const handleUpdate = (jobId) => {
     setSelectedJobId(jobId);
+  };
+
+  const handleDelete = (jobId) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete this job?');
+    onDelete(jobId);
   };
 
   const handleCloseDetails = () => {
@@ -15,20 +21,24 @@ const JobList = ({ jobs, onUpdate, onDelete }) => {
 
   return (
     <div>
-      {jobs.map(job => (
-        <div key={job.id}>
-          <h3>{job.title}</h3>
-          <p>Description: {job.description}</p>
-          <p>Employer: {job.employer_name}</p>
-          <p>Created At: {job.created_at}</p>
-          <p>Category: {job.category_name}</p>
-          <button onClick={() => handleUpdate(job.id)}>Update</button>
-          <button onClick={() => onDelete(job.id)}>Delete</button>
-        </div>
-      ))}
+      {jobs && jobs.length > 0 ? (
+        jobs.map(job => (
+          <div key={job.id}>
+            <h3>{job.title}</h3>
+            <p>Description: {job.description}</p>
+            <p>Employer: {job.employer_name}</p>
+            <p>Created At: {job.created_at}</p>
+            <p>Category: {job.category_name}</p>
+            <button onClick={() => handleUpdate(job.id)}>Update</button>
+            <button onClick={() => handleDelete(job.id)}>Delete</button>
+          </div>
+        ))
+      ) : (
+        <p>No jobs available.</p>
+      )}
 
       {selectedJobId && (
-        <JobDetails jobId={selectedJobId} onClose={handleCloseDetails} onUpdate={onUpdate} />
+        <JobDetailsForApplicant jobId={selectedJobId} onClose={handleCloseDetails} />
       )}
     </div>
   );

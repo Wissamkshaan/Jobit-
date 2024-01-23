@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import JobList from './components/JobList';
 import JobForm from './components/JobForm';
+import JobDetailsForApplicant from './components/JobDetailsForApplicant';
+import JobListForApplicant from './components/JobListForApplicant';
 
 function App() {
   const [jobs, setJobs] = useState([]);
@@ -14,6 +17,8 @@ function App() {
     created_at: '',
     category: null,
   });
+
+  const [categories, setCategories] = useState([]); 
 
   useEffect(() => {
     axios.get('http://localhost:8000/jobs/')
@@ -77,20 +82,53 @@ function App() {
         console.error('Error fetching data:', error);
       });
   };
-
-  return (
-    <div className="App">
+  
+  const employerView = (
+    <div>
       <JobForm
         onCreate={handleCreate}
         onUpdate={handleUpdate}
-        onDelete={() => handleDelete(jobIdToUpdate)}
-        setJobs={setJobs}
-        Jobs={jobs}
-        jobIdToUpdate={jobIdToUpdate}
+        onDelete={handleDelete}
         onSubmit={handleJobFormSubmit}
+        setJobs={setJobs}
+        jobs={jobs}
+        jobIdToUpdate={jobIdToUpdate}
+        userType="employer"
+        categories={categories}
       />
-      <JobList jobs={jobs} onUpdate={handleUpdate} onDelete={handleDelete} />
+      <JobList jobs={jobs} onUpdate={handleUpdate} onDelete={handleDelete} userType="employer" />
     </div>
+  );
+
+  const applicantView = (
+    <div>
+      <JobListForApplicant categories={categories} />
+      <JobDetailsForApplicant />
+    </div>
+  );
+
+  
+  return (
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/employer">Employer View</Link>
+            </li>
+            <li>
+              <Link to="/applicant">Applicant View</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/employer/*" element={employerView} />
+          <Route path="/applicant/*" element={applicantView} />
+          <Route path="/" element={<div className="App"><p>Welcome to the Job Board</p></div>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

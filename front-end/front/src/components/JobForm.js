@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onDelete, onSubmit, jobs }) => {
+
+const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, userType }) => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     employer: '',
     created_at: '',
     category: null,
+    
   });
 
   
@@ -33,6 +35,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onDelete, onSubmit, jobs }
         employer: selectedJob.employer,
         created_at: selectedJob.created_at,
         category: selectedJob.category,
+        
       });
     }
   }, [jobIdToUpdate, jobs]);
@@ -47,81 +50,103 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onDelete, onSubmit, jobs }
   
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log('Form State:', formData);
+  
     const apiEndpoint = jobIdToUpdate ? `http://localhost:8000/jobs/${jobIdToUpdate}/` : 'http://localhost:8000/jobs/';
     const httpMethod = jobIdToUpdate ? 'put' : 'post';
-
+  
     const payload = {
       title: formData.title,
       description: formData.description,
-      employer: parseInt(formData.employer),
+      employer: userType === 'employer' ? parseInt(formData.employer) : null,
       created_at: formData.created_at + ":00Z",
       category: parseInt(formData.category),
     };
-
+  
+    if (userType === 'employer' && payload.employer === null) {
+      console.error('Employer ID is required for employer type.');
+      return;
+    }
+  
     axios[httpMethod](apiEndpoint, payload)
       .then(response => {
         console.log('Job action successful:', response.data);
-
+  
         if (jobIdToUpdate) {
-          onUpdate(response.data);
-         
-        } else {
-          setFormData({ // Reset the form data after update
-            title: '',
-            description: '',
-            employer: '',
-            created_at: '',
-            category: null,
-          });
-          onCreate();
-          onSubmit();
-        }
-      })
+          
+            // If updating, update the state directly
+            const updatedJobs = jobs.map(job => (job.id === jobIdToUpdate ? response.data : job));
+            setJobs(updatedJobs);
+            console.log('Updated Jobs:', updatedJobs);
+          } else {
+            // If creating, reset the form data and call onCreate
+            setFormData({
+              title: '',
+              description: '',
+              employer: '',
+              created_at: '',
+              category: null,
+            });
+            onCreate();
+            onSubmit();
+          }
+        })
       .catch(error => {
         console.error('Job action failed:', error);
       });
   };
+  const handleUpdate = () => {
+    // console.log('Updating job with details:', formData);
+    onUpdate({
+      title: formData.title,
+      description: formData.description,
+      employer: formData.employer,
+      created_at: formData.created_at,
+      category: formData.category,
+    });
 
-  //this function will be called only when I click update button and same with delete function 
-const handleUpdate = () => {
-    onUpdate();
+    setFormData({
+      title: '',
+      description: '',
+      employer: '',
+      created_at: '',
+      category: null,
+     
+    });
   };
 
-  const handleDelete = () => {
-   
-    const confirmDelete = window.confirm('Are you sure you want to delete this job?');
-    if (confirmDelete) {
-      onDelete();
-    }
-  };
+  
+  
 
   return (
     <form onSubmit={handleSubmit}>
-    <label>Title:</label>
-    <input type="text" name="title" value={formData.title} onChange={handleChange} required />
+   
+      <label>Title:</label>
+      <input type="text" name="title" value={formData.title} onChange={handleChange} required />
 
-    <label>Description:</label>
-    <input type="text" name="description" value={formData.description} onChange={handleChange} required />
+      <label>Description:</label>
+      <input type="text" name="description" value={formData.description} onChange={handleChange} required />
 
-    <label>Employer ID:</label>
-    <input type="text" name="employer" value={formData.employer} onChange={handleChange} required />
+      <label>Employer ID:</label>
+      <input type="text" name="employer" value={formData.employer} onChange={handleChange} required />
 
-    <label>Created At:</label>
-    <input type="datetime-local" name="created_at" value={formData.created_at} onChange={handleChange} required />
+      <label>Created At:</label>
+      <input type="datetime-local" name="created_at" value={formData.created_at} onChange={handleChange} required />
 
-    <label>Category:</label>
-    <select name="category" value={formData.category} onChange={handleChange} required>
-      <option value="" disabled>Select a category</option>
-      {categories.map(category => (
-        <option key={category.id} value={category.id}>{category.name}</option>
-      ))}
-    </select>
+      <label>Category:</label>
+      <select name="category" value={formData.category} onChange={handleChange} required>
+        <option value="" disabled>Select a category</option>
+        {categories.map(category => (
+          <option key={category.id} value={category.id}>{category.name}</option>
+        ))}
+      </select>
 
-    <button type="submit">{jobIdToUpdate ? 'Update Job' : 'Create Job'}</button>
-      {jobIdToUpdate && <button type="button" onClick={onDelete}>Delete Job</button>}
-  </form>
-);
+  <button type="submit">{jobIdToUpdate ? 'Update Job' : 'Create Job'}</button>
+
+
+      
+</form>
+  );
 };
 
 export default JobForm;

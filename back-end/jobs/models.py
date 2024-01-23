@@ -34,7 +34,7 @@ class Category(models.Model):
 class Job(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(default="No description available")
-    employer = models.ForeignKey(User, on_delete=models.CASCADE)
+    employer = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=None, null=True, blank=True)
     
