@@ -6,7 +6,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    employer: '',
+    // employer: '',
     created_at: '',
     category: null,
     
@@ -32,7 +32,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
       setFormData({
         title: selectedJob.title,
         description: selectedJob.description,
-        employer: selectedJob.employer,
+        // employer: selectedJob.employer,
         created_at: selectedJob.created_at,
         category: selectedJob.category,
         
@@ -58,15 +58,15 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
     const payload = {
       title: formData.title,
       description: formData.description,
-      employer: userType === 'employer' ? parseInt(formData.employer) : null,
+      // employer: userType === 'employer' ? parseInt(formData.employer) : null,
       created_at: formData.created_at + ":00Z",
       category: parseInt(formData.category),
     };
   
-    if (userType === 'employer' && payload.employer === null) {
-      console.error('Employer ID is required for employer type.');
-      return;
-    }
+    // if (userType === 'employer' && payload.employer === null) {
+    //   console.error('Employer ID is required for employer type.');
+    //   return;
+    // }
   
     axios[httpMethod](apiEndpoint, payload)
       .then(response => {
@@ -83,7 +83,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
             setFormData({
               title: '',
               description: '',
-              employer: '',
+              // employer: '',
               created_at: '',
               category: null,
             });
@@ -100,7 +100,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
     onUpdate({
       title: formData.title,
       description: formData.description,
-      employer: formData.employer,
+      // employer: formData.employer,
       created_at: formData.created_at,
       category: formData.category,
     });
@@ -108,7 +108,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
     setFormData({
       title: '',
       description: '',
-      employer: '',
+      // employer: '',
       created_at: '',
       category: null,
      
@@ -127,8 +127,8 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
       <label>Description:</label>
       <input type="text" name="description" value={formData.description} onChange={handleChange} required />
 
-      <label>Employer ID:</label>
-      <input type="text" name="employer" value={formData.employer} onChange={handleChange} required />
+      {/* <label>Employer ID:</label>
+      <input type="text" name="employer" value={formData.employer} onChange={handleChange} required /> */}
 
       <label>Created At:</label>
       <input type="datetime-local" name="created_at" value={formData.created_at} onChange={handleChange} required />

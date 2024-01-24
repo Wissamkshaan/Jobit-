@@ -38,7 +38,7 @@ const EmployerView = ({ categories, jobs, handleCreate, handleUpdate, handleDele
        setJobs={setJobs}
        jobs={jobs}
        jobIdToUpdate={jobIdToUpdate}
-       userType="employer"
+      //  userType="employer"
        categories={categories}
        onUpdate={onUpdate}
       />
