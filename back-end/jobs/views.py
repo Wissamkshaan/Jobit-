@@ -19,6 +19,20 @@ class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
 
+    def get_queryset(self):
+        category_id = self.request.query_params.get('category', None)
+        search_term = self.request.query_params.get('search', None)
+
+        queryset = Job.objects.all()
+
+        if category_id:
+            queryset = queryset.filter(category__id=category_id)
+
+        if search_term:
+            queryset = queryset.filter(title__icontains=search_term)
+
+        return queryset
+
     def create(self, request, *args, **kwargs):
        
         category_id = request.data.get('category')

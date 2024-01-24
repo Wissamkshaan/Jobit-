@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import JobListForApplicant from './JobListForApplicant';
 import JobDetailsForApplicant from './JobDetailsForApplicant';
 
 const JobList = ({ jobs, onUpdate, onDelete }) => {
-  console.log('Rendered Jobs:', jobs);
+  const navigate = useNavigate();
   const [selectedJobId, setSelectedJobId] = useState(null);
 
   const handleUpdate = (jobId) => {
-    setSelectedJobId(jobId);
+    // Navigate to the updating form route
+    navigate(`/update-job/${jobId}`);
   };
 
   const handleDelete = (jobId) => {

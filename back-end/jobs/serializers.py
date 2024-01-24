@@ -50,8 +50,10 @@ class JobSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'employer_name', 'description', 'created_at', 'employer', 'category', 'category_name']
 
 class ApplicationSerializer(serializers.ModelSerializer):
-    job  = JobSerializer(read_only=True)
-    applicant = UserSerializer(read_only=True)
+    job = serializers.PrimaryKeyRelatedField(queryset=Job.objects.all())
+    applicant = serializers.CharField()
+    resume = serializers.FileField()
+
     class Meta:
         model = Application
-        fields = '__all__'
+        fields = ['id', 'job', 'applicant', 'resume', 'applied_at']

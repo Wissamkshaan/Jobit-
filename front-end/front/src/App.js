@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
+import EmployerView from './components/EmployerView';
+import UpdateJobForm from './components/UpdateJobForm';
 import JobList from './components/JobList';
 import JobForm from './components/JobForm';
 import JobDetailsForApplicant from './components/JobDetailsForApplicant';
@@ -103,7 +105,6 @@ function App() {
   const applicantView = (
     <div>
       <JobListForApplicant categories={categories} />
-      <JobDetailsForApplicant />
     </div>
   );
 
@@ -123,8 +124,11 @@ function App() {
         </nav>
 
         <Routes>
-          <Route path="/employer/*" element={employerView} />
-          <Route path="/applicant/*" element={applicantView} />
+        
+          <Route path="/applicant" element={applicantView} />
+          <Route path="/employer" element={employerView} />
+          <Route path="/update-job/:id" element={<UpdateJobForm categories={categories}/>} />
+        
           <Route path="/" element={<div className="App"><p>Welcome to the Job Board</p></div>} />
         </Routes>
       </div>
