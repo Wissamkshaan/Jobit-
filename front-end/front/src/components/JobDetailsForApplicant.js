@@ -25,7 +25,7 @@ const JobDetailsForApplicant = ({ jobId, onClose }) => {
       <div>
         <h2>{jobDetails.title}</h2>
         <p>Description: {jobDetails.description}</p>
-        <p>Employer: {jobDetails.employer_name}</p>
+        {/* <p>Employer: {jobDetails.employer_name}</p> */}
         <p>Created At: {jobDetails.created_at}</p>
         <p>Category: {jobDetails.category}</p>
 

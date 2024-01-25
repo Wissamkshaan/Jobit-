@@ -28,7 +28,7 @@ const JobList = ({ jobs, onUpdate, onDelete }) => {
           <div key={job.id}>
             <h3>{job.title}</h3>
             <p>Description: {job.description}</p>
-            <p>Employer: {job.employer_name}</p>
+            
             <p>Created At: {job.created_at}</p>
             <p>Category: {job.category_name}</p>
             <button onClick={() => handleUpdate(job.id)}>Update</button>

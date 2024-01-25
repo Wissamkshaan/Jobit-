@@ -79,8 +79,8 @@ const UpdateJobForm = () => {
         <label>Description:</label>
         <input type="text" name="description" value={formData?.description || ''} onChange={handleChange} required />
 
-        <label>Employer ID:</label>
-        <input type="text" name="employer" value={formData?.employer || ''} onChange={handleChange} required />
+        {/* <label>Employer ID:</label>
+        <input type="text" name="employer" value={formData?.employer || ''} onChange={handleChange} required /> */}
 
         <label>Created At:</label>
         <input type="datetime-local" name="created_at" value={formData.created_at.slice(0, -1)} onChange={handleChange} required />
