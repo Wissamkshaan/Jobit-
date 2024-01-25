@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import JobListForApplicant from './JobListForApplicant';
 import JobDetailsForApplicant from './JobDetailsForApplicant';
+import './public /employer.css';
+
 
 const JobList = ({ jobs, onUpdate, onDelete }) => {
   const navigate = useNavigate();
@@ -22,10 +24,10 @@ const JobList = ({ jobs, onUpdate, onDelete }) => {
   };
 
   return (
-    <div>
+    <div className='JobList'>
       {jobs && jobs.length > 0 ? (
         jobs.map(job => (
-          <div key={job.id}>
+          <div key={job.id} className='JobListItem'>
             <h3>{job.title}</h3>
             <p>Description: {job.description}</p>
             

@@ -1,0 +1,98 @@
+.JobForm {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+  }
+  
+  /* Apply styles to form labels */
+  .JobForm label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  /* Apply styles to form inputs and select */
+  .JobForm input,
+  .JobForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  /* Apply styles to the submit button */
+  .JobForm button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .JobForm button:hover {
+    background-color: #0056b3;
+  }
+
+
+  .JobList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Apply styles to each job item */
+  .JobListItem {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .JobListItem h3 {
+    margin-bottom: 8px;
+  }
+  
+  .JobListItem p {
+    margin-bottom: 12px;
+  }
+  
+  .JobListItem button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  
+  .JobListItem button:hover {
+    background-color: #0056b3;
+  }
+
+
+  /* Apply styles to the navigation links */
+.NavLinks {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #007bff;
+  }
+  
+  .NavLink {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .NavLink:hover {
+    background-color: #0056b3;
+  }

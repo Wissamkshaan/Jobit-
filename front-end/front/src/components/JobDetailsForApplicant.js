@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './public /jobDetails-applicant.css';
 
 const JobDetailsForApplicant = ({ jobId, onClose }) => {
   const [jobDetails, setJobDetails] = useState({
@@ -21,13 +22,14 @@ const JobDetailsForApplicant = ({ jobId, onClose }) => {
   }, [jobId]);
 
   return (
-    <div>
+    <div className='JobDetailsContainer'>
       <div>
-        <h2>{jobDetails.title}</h2>
-        <p>Description: {jobDetails.description}</p>
-        {/* <p>Employer: {jobDetails.employer_name}</p> */}
-        <p>Created At: {jobDetails.created_at}</p>
-        <p>Category: {jobDetails.category}</p>
+        <h2 className='JobTitle'>{jobDetails.title}</h2>
+        <p className='JobDetails'>Description: {jobDetails.description}</p>
+        <p className='JobDetails'>Created At: {jobDetails.created_at}</p>
+        <p className='JobDetails'>Category: {jobDetails.category_name}</p>
+
+        <button className="CloseButton" onClick={onClose}>Close</button>
 
         
       </div>

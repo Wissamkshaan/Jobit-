@@ -2,6 +2,8 @@ import React from 'react';
 import JobForm from './JobForm';
 import JobList from './JobList';
 import axios from 'axios';
+import './public /employer.css';
+
 
 const EmployerView = ({ categories, jobs, handleCreate, handleUpdate, handleDelete, handleJobFormSubmit, jobIdToUpdate, setJobs }) => {
   const onUpdate = (updatedJob) => {
@@ -30,7 +32,9 @@ const EmployerView = ({ categories, jobs, handleCreate, handleUpdate, handleDele
   // console.log('Value of handleDelete:', handleDelete);
 
   return (
-    <div>
+
+  
+    <div className='EmployerView'>
       <JobForm
        onCreate={handleCreate}
        onDelete={handleDelete}
@@ -38,7 +42,6 @@ const EmployerView = ({ categories, jobs, handleCreate, handleUpdate, handleDele
        setJobs={setJobs}
        jobs={jobs}
        jobIdToUpdate={jobIdToUpdate}
-      //  userType="employer"
        categories={categories}
        onUpdate={onUpdate}
       />

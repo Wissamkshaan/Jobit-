@@ -1,0 +1,37 @@
+/* jobDetails.css */
+
+/* Container styles */
+.JobDetailsContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Job title styles */
+  .JobTitle {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  /* Job details styles */
+  .JobDetails {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  /* Close button styles */
+  .CloseButton {
+    background-color: #d9534f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .CloseButton:hover {
+    background-color: #c9302c;
+  }
+  

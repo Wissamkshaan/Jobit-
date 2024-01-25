@@ -1,6 +1,8 @@
-import React from 'react';
+
+import React, { useState} from 'react';
 import JobListForApplicant from './JobListForApplicant';
 import JobDetailsForApplicant from './JobDetailsForApplicant';
+
 
 const ApplicantView = ({ categories }) => {
   const [selectedJobId, setSelectedJobId] = useState(null);

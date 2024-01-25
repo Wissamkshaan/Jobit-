@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import axios from 'axios';
-import './App.css';
+
 import EmployerView from './components/EmployerView';
 import UpdateJobForm from './components/UpdateJobForm';
 import JobList from './components/JobList';
@@ -108,29 +108,53 @@ function App() {
     </div>
   );
 
+  const AboutUs = () => (
+    <div>
+      <h2>About Us</h2>
+      {'all about us'}
+    </div>
+  );
+
+  const Footer = () => (
+    <footer>
+      <p>Your Footer Content</p>
+      {/* Other footer content */}
+    </footer>
+  );
+
   
   return (
     <Router>
       <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/employer">Employer View</Link>
-            </li>
-            <li>
-              <Link to="/applicant">Applicant View</Link>
-            </li>
-          </ul>
-        </nav>
+        {/* Header */}
+        <header>
+          <h1>JOBiT</h1>
+          {/* Other header content */}
+        </header>
+
+        {/* Navigation Links */}
+        <div className="NavLinks">
+          <Link to="/employer" className="NavLink">
+            Employer
+          </Link>
+          <Link to="/applicant" className="NavLink">
+            Applicant 
+          </Link>
+          <Link to="/about-us" className="NavLink">
+            About Us
+          </Link>
+        </div>
 
         <Routes>
-        
           <Route path="/applicant" element={applicantView} />
           <Route path="/employer" element={employerView} />
-          <Route path="/update-job/:id" element={<UpdateJobForm categories={categories}/>} />
-        
+          <Route path="/update-job/:id" element={<UpdateJobForm categories={categories} />} />
+          <Route path="/about-us" element={<AboutUs />} /> {/* Route for About Us */}
           <Route path="/" element={<div className="App"><p>Welcome to the Job Board</p></div>} />
         </Routes>
+        <footer className="Footer">
+          <p>&copy; 2024 Wissam Alfuraiji. All rights reserved.</p>
+        </footer>
       </div>
     </Router>
   );

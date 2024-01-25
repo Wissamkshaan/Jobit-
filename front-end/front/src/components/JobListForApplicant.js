@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import JobDetailsForApplicant from './JobDetailsForApplicant';
+import './public /applicant.css';
 
 const JobListForApplicant = () => {
   const [categories, setCategories] = useState([]);
@@ -118,17 +119,18 @@ const JobListForApplicant = () => {
   };
 
   return (
-    <div>
+    <div className='ApplicantContainer'>
        <input
       type="text"
       placeholder="Search by title"
       value={searchTerm}
       onChange={(e) => setSearchTerm(e.target.value)}
+      className='SearchInput'
       
     />
     
       {/* Category dropdown */}
-      <select value={selectedCategoryId} onChange={handleCategoryChange}>
+      <select value={selectedCategoryId} onChange={handleCategoryChange} className='CategoryDropdown'>
         <option value="" disabled>Select a category</option>
         {categories.map(category => (
           <option key={category.id} value={category.id}>{category.name}</option>
@@ -138,10 +140,10 @@ const JobListForApplicant = () => {
 
       {/* Render jobs for the selected category */}
       {jobs.map(job => (
-        <div key={job.id}>
+        <div key={job.id} className='JobItem'>
           <h3>{job.title}</h3>
           <p>Description: {job.description}</p>
-          <button onClick={() => handleJobClick(job.id)}>View Details</button>
+          <button className='ViewDetailsButton' onClick={() => handleJobClick(job.id)}>View Details</button>
         </div>
       ))}
 
@@ -152,7 +154,7 @@ const JobListForApplicant = () => {
 
       {/* Application form */}
       {selectedJobId && (
-        <div>
+        <div className='ApplyForm'>
           <h2>Apply for this Job</h2>
           <form>
             <label>Name:</label>

@@ -100,7 +100,6 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
     onUpdate({
       title: formData.title,
       description: formData.description,
-      // employer: formData.employer,
       created_at: formData.created_at,
       category: formData.category,
     });
@@ -108,7 +107,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
     setFormData({
       title: '',
       description: '',
-      // employer: '',
+      
       created_at: '',
       category: null,
      
@@ -119,7 +118,8 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
   
 
   return (
-    <form onSubmit={handleSubmit}>
+    
+    <form onSubmit={handleSubmit} className="JobForm">
    
       <label>Title:</label>
       <input type="text" name="title" value={formData.title} onChange={handleChange} required />
@@ -127,8 +127,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
       <label>Description:</label>
       <input type="text" name="description" value={formData.description} onChange={handleChange} required />
 
-      {/* <label>Employer ID:</label>
-      <input type="text" name="employer" value={formData.employer} onChange={handleChange} required /> */}
+      
 
       <label>Created At:</label>
       <input type="datetime-local" name="created_at" value={formData.created_at} onChange={handleChange} required />
@@ -146,6 +145,7 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
 
       
 </form>
+
   );
 };
 
