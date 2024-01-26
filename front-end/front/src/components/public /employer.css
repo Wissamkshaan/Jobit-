@@ -52,24 +52,31 @@
     padding: 16px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    align-items: flex-start;
   }
   
   .JobListItem h3 {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
   
   .JobListItem p {
     margin-bottom: 12px;
   }
   
-  .JobListItem button {
+ .JobListItem button {
     background-color: #007bff;
     color: #fff;
-    padding: 8px 12px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: 2px;
     cursor: pointer;
-    margin-right: 8px;
+    transition: background-color 0.3s ease;
+    width: 30%;
+    margin-top: 8px;
+
+    
   }
   
   .JobListItem button:hover {
@@ -82,7 +89,7 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background-color: #007bff;
+    background-color: #0a0a0a;
   }
   
   .NavLink {
@@ -95,4 +102,101 @@
   
   .NavLink:hover {
     background-color: #0056b3;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  footer {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .AppFooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+  }
+
+  .AboutUsContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #007bff;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  .AppContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .MainContent {
+    flex: 1;
+  }
+
+
+  .FooterContainer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  
+  .FooterSection {
+    margin-right: 20px;
+  }
+  
+  .FooterSection h4 {
+    color: #007bff;
+    font-size: 18px;
+  }
+  
+  .FooterSection ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .FooterSection li {
+    margin-bottom: 8px;
+  }
+  
+  .FooterSection a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .FooterSection a:hover {
+    color: #007bff;
+  }
+  
+  .FooterSection p {
+    font-size: 14px;
+    color: #555;
   }

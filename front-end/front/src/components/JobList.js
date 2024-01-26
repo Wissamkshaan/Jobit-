@@ -33,6 +33,7 @@ const JobList = ({ jobs, onUpdate, onDelete }) => {
             
             <p>Created At: {job.created_at}</p>
             <p>Category: {job.category_name}</p>
+          
             <button onClick={() => handleUpdate(job.id)}>Update</button>
             <button onClick={() => handleDelete(job.id)}>Delete</button>
           </div>

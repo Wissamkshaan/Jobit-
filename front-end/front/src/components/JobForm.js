@@ -83,7 +83,6 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
             setFormData({
               title: '',
               description: '',
-              // employer: '',
               created_at: '',
               category: null,
             });

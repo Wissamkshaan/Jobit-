@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import axios from 'axios';
-
+import Header from './components/public /Header';
+import Footer from './components/public /Footer';
+import AboutUs from './components/public /AboutUs';
 import EmployerView from './components/EmployerView';
 import UpdateJobForm from './components/UpdateJobForm';
 import JobList from './components/JobList';
 import JobForm from './components/JobForm';
 import JobDetailsForApplicant from './components/JobDetailsForApplicant';
 import JobListForApplicant from './components/JobListForApplicant';
+import JobApplicationForm from './components/JobApplicationForm';
+
 
 function App() {
   const [jobs, setJobs] = useState([]);
@@ -20,7 +24,7 @@ function App() {
     category: null,
   });
 
-  const [categories, setCategories] = useState([]); 
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:8000/jobs/')
@@ -30,10 +34,9 @@ function App() {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
-  }, []); 
+  }, []);
 
   const handleCreate = () => {
-    // Set jobIdToUpdate to null to indicate a create action
     setJobIdToUpdate(null);
     setFormData({
       title: '',
@@ -60,7 +63,6 @@ function App() {
       .then(response => {
         console.log('Deleted job with ID:', jobId);
 
-        // Refresh the job list
         axios.get('http://localhost:8000/jobs/')
           .then(response => {
             setJobs(response.data);
@@ -75,7 +77,6 @@ function App() {
   };
 
   const handleJobFormSubmit = () => {
-    // Refresh the job list after creating or updating a job
     axios.get('http://localhost:8000/jobs/')
       .then(response => {
         setJobs(response.data);
@@ -84,7 +85,7 @@ function App() {
         console.error('Error fetching data:', error);
       });
   };
-  
+
   const employerView = (
     <div>
       <JobForm
@@ -108,53 +109,36 @@ function App() {
     </div>
   );
 
-  const AboutUs = () => (
-    <div>
-      <h2>About Us</h2>
-      {'all about us'}
-    </div>
-  );
 
-  const Footer = () => (
-    <footer>
-      <p>Your Footer Content</p>
-      {/* Other footer content */}
-    </footer>
-  );
-
-  
-  return (
+return (
     <Router>
-      <div>
-        {/* Header */}
-        <header>
-          <h1>JOBiT</h1>
-          {/* Other header content */}
-        </header>
+       <div className="AppContainer">
+        <Header />
+        
+          <div className="NavLinks">
+            <Link to="/employer" className="NavLink">
+              Employer/Post Job
+            </Link>
+            <Link to="/applicant" className="NavLink">
+              Applicant/View Jobs
+            </Link>
+            <Link to="/about-us" className="NavLink">
+              About Us
+            </Link>
+          </div>
 
-        {/* Navigation Links */}
-        <div className="NavLinks">
-          <Link to="/employer" className="NavLink">
-            Employer
-          </Link>
-          <Link to="/applicant" className="NavLink">
-            Applicant 
-          </Link>
-          <Link to="/about-us" className="NavLink">
-            About Us
-          </Link>
-        </div>
+          <Routes>
+            <Route path="/applicant" element={<JobListForApplicant />} />
+            <Route path="/applicant/:jobId" element={<JobApplicationForm />} />
+            <Route path="/employer" element={employerView} />
+            <Route path="/update-job/:id" element={<UpdateJobForm categories={categories} />} />
+            <Route path="/about-us" element={<AboutUs />} />
+          </Routes>
 
-        <Routes>
-          <Route path="/applicant" element={applicantView} />
-          <Route path="/employer" element={employerView} />
-          <Route path="/update-job/:id" element={<UpdateJobForm categories={categories} />} />
-          <Route path="/about-us" element={<AboutUs />} /> {/* Route for About Us */}
-          <Route path="/" element={<div className="App"><p>Welcome to the Job Board</p></div>} />
-        </Routes>
-        <footer className="Footer">
-          <p>&copy; 2024 Wissam Alfuraiji. All rights reserved.</p>
-        </footer>
+          
+          <Footer />
+
+       
       </div>
     </Router>
   );

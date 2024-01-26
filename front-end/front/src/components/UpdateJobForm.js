@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import './public /applicant.css';
 
 const UpdateJobForm = () => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ const UpdateJobForm = () => {
   };
 
   return (
-    <div>
+    <div className='UpdateJobForm'>
       <h2>Update Job</h2>
       <form onSubmit={handleSubmit}>
         <label>Title:</label>
