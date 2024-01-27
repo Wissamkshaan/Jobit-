@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import logo from './logo.png';
+import './employer.css';
 
-const Header = () => (
-  <header className="AppHeader">
-    <h1>JOBiT</h1>
-    
-  </header>
-);
+const Header = () => {
+  return (
+    <header>
+      <div className="HeaderContent">
+        <img src={logo} alt="Logo" className="Logo" />
+        <h1 className="JobTitle">J<span>O</span>BiT</h1>
+      </div>
+  
+    </header>
+  );
+};
 
 export default Header;

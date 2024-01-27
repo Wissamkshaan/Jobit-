@@ -7,14 +7,14 @@
     background-color: #f5f5f5;
   }
   
-  /* Apply styles to form labels */
+ 
   .JobForm label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
   }
   
-  /* Apply styles to form inputs and select */
+ 
   .JobForm input,
   .JobForm select {
     width: 100%;
@@ -24,7 +24,7 @@
     border-radius: 4px;
   }
   
-  /* Apply styles to the submit button */
+  
   .JobForm button {
     background-color: #007bff;
     color: #fff;
@@ -45,7 +45,7 @@
     gap: 20px;
   }
   
-  /* Apply styles to each job item */
+ 
   .JobListItem {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -53,7 +53,7 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; /* Align children vertically */
+    flex-direction: column; 
     align-items: flex-start;
   }
   
@@ -84,7 +84,7 @@
   }
 
 
-  /* Apply styles to the navigation links */
+
 .NavLinks {
     display: flex;
     justify-content: space-between;
@@ -154,6 +154,7 @@
     min-height: 100vh;
   }
   
+  
   .MainContent {
     flex: 1;
   }
@@ -200,3 +201,31 @@
     font-size: 14px;
     color: #555;
   }
+
+  
+  .HeaderContent {
+    display: flex;
+    align-items: center;
+  }
+  
+
+  .Logo {
+    width: 50px; 
+    height: auto; 
+    margin-right: 10px; 
+  }
+  
+
+  .JobTitle {
+    font-family: 'YourPreferredFont', sans-serif; 
+    font-size: 36px; 
+    color: #007bff; 
+  }
+  
+  .JobTitle span {
+    color: #e44d26; 
+    font-size: 40px; 
+    font-weight: bold; 
+  }
+  
+  

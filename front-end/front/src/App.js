@@ -4,11 +4,9 @@ import axios from 'axios';
 import Header from './components/public /Header';
 import Footer from './components/public /Footer';
 import AboutUs from './components/public /AboutUs';
-import EmployerView from './components/EmployerView';
 import UpdateJobForm from './components/UpdateJobForm';
 import JobList from './components/JobList';
 import JobForm from './components/JobForm';
-import JobDetailsForApplicant from './components/JobDetailsForApplicant';
 import JobListForApplicant from './components/JobListForApplicant';
 import JobApplicationForm from './components/JobApplicationForm';
 

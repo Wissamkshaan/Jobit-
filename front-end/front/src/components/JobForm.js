@@ -6,7 +6,6 @@ const JobForm = ({ onCreate, onUpdate, jobIdToUpdate, onSubmit, jobs, setJobs, u
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    // employer: '',
     created_at: '',
     category: null,
     

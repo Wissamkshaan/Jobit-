@@ -22,7 +22,7 @@ const Footer = () => (
       <ul>
         <li><a href="https://www.facebook.com/jobit">Facebook</a></li>
         <li><a href="https://twitter.com/jobit">Twitter</a></li>
-        <li><a href="https://www.linkedin.com/company/jobit">LinkedIn</a></li>
+        <li><a href="https://www.linkedin.com/in/wissam-alfuraiji/">LinkedIn</a></li>
       </ul>
     </div>
     <div className="FooterSection">

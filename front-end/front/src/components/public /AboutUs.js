@@ -4,7 +4,7 @@ const AboutUs = () => (
   <div className="AboutUsContainer">
     <h2>About Us</h2>
     <p>
-      Welcome to <span style={{ color: '#007bff', fontSize: '24px', fontWeight: 'bold' }}>JOBiT</span>, where we connect talented individuals with exciting job opportunities.
+      Welcome to <span style={{ color: '#007bff', fontSize: '24px', fontWeight: 'bold' }}>J<span style={{ color: '#FF0000' }}>O</span>BiT</span>, where we connect talented individuals with exciting job opportunities.
     </p>
     <p>
       Our Mission: To empower both employers and job seekers by providing a platform that simplifies

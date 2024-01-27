@@ -77,8 +77,8 @@ const UpdateJobForm = () => {
         <label>Title:</label>
         <input type="text" name="title" value={formData?.title || ''} onChange={handleChange} required />
 
-        <label>Description:</label>
-        <input type="text" name="description" value={formData?.description || ''} onChange={handleChange} required />
+        <label >Description:</label>
+        <textarea name="description" value={formData?.description || ''} onChange={handleChange} required />
 
       
         <label>Created At:</label>
